@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap.js"></script>
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body ng-app="app">
+    <script>
+      var app = angular.module('app', ['ui.bootstrap']);
+
+      app.controller('FormController', function($scope) {
+        $scope.formctrl = {};
+        $scope.formctrl.name = 'Truc';
+        $scope.formctrl.age = '30';
+        $scope.submit = function() {
+          alert("Congratulations " + $scope.formctrl.name + ", you are " + $scope.formctrl.age + "!");
+        };
+      });
+    </script>
+
+    <h1>AngularJS Getting Started</h1>
+
+    <h2>Expressions</h2>
+
+    <div id="twoAndTwo">2 + 2 = {{ 2 + 2 }}</div>
+    <div id="ninjaAndSquad">ninja + squad = {{ 'ninja' + 'squad' }}</div>
+
+
+    <h2>Binding</h2>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <label>Name</label>
+        <input ng-model="name" placeholder="Enter name...">
+        <div ng-show="name">Hello {{ name }}!</div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <label>Name</label>
+        <input ng-model="person.name" placeholder="Enter person's name...">
+      </div>
+      <div class="col-sm-3">
+        <label>Age</label>
+        <input ng-model="person.age" placeholder="Enter person's age...">
+      </div>
+      <div ng-show="person.name" class="col-sm-12">Congratulations {{ person.name }}, you are {{ person.age }}!</div>
+    </div>
+
+    <h2>Controller</h2>
+    <div ng-controller="FormController">
+      <label>Name</label>
+      <input ng-model="formctrl.name" placeholder="Enter person's name...">
+      <label>Age</label>
+      <input ng-model="formctrl.age" placeholder="Enter person's age...">
+      <button class="btn btn-danger" ng-click="submit()">Submit!</button>
+    </div>
+
+  </body>
+</html>
