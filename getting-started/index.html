@@ -1,10 +1,10 @@
 <html>
   <head>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap.js"></script>
     <script src="script.js"></script>
-
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body ng-app="app">
 
@@ -50,6 +50,13 @@
       <div ng-controller="NestedController">
         <button class="btn btn-danger" ng-click="submit()">Submit child!</button>
       </div>
+    </div>
+
+    <h3>Filter</h3>
+    <div ng-controller="FilterController">
+      <label>Age</label>
+      <input ng-model="data.age">
+      <span>Majority: {{data.age | majority}}</span>
     </div>
 
   </body>

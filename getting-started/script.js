@@ -14,3 +14,13 @@ app.controller('NestedController', function($scope) {
     $scope.formctrl.message = "[child] Congratulations " + $scope.formctrl.name + "!";
   };
 });
+
+app.controller('FilterController', function($scope) {
+});
+
+app.filter('majority', function() {
+  return function(input) {
+    var message = input >= 18 ? 'Oui' : 'No';
+    return message;
+  }
+});
