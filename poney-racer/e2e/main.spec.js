@@ -1,6 +1,6 @@
 'use strict';
 
-describe('The main view', function () {
+describe('The main view E2E tests', function () {
   var page;
 
   beforeEach(function () {
