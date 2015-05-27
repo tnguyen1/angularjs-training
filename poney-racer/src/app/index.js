@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('poneyRacer', ['ngCookies', 'ngRoute', 'ui.bootstrap'])
+angular.module('controllers', []);
+
+angular.module('poneyRacer', ['controllers', 'ngCookies', 'ngRoute', 'ui.bootstrap'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

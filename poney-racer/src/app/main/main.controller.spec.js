@@ -1,22 +1,36 @@
 'use strict';
 
-describe('controllers', function(){
-  var scope;
+describe('controllers', function() {
 
-  beforeEach(module('poneyRacer'));
+  var scope, $controller, $httpBackend;
 
-  beforeEach(inject(function($rootScope) {
+  beforeEach(module('controllers'));
+
+  beforeEach(inject(function($rootScope, _$controller_, _$httpBackend_) {
     scope = $rootScope.$new();
+    $controller = _$controller_;
+    $httpBackend = _$httpBackend_;
   }));
 
-  it('should define more than 5 awesome things', inject(function($controller) {
-    expect(scope.awesomeThings).toBeUndefined();
+  afterEach(function() {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  });
 
+  it('should define 2 users', inject(function($controller) {
+    var fakeUsers = [];
+    fakeUsers.push({'login':'ced'});
+    fakeUsers.push({'login':'truc'});
+
+    $httpBackend.expectGET('http://localhost:8080/poneyserver/users')
+      .respond(fakeUsers);
     $controller('MainCtrl', {
       $scope: scope
     });
+    $httpBackend.flush();
 
-    expect(angular.isArray(scope.awesomeThings)).toBeTruthy();
-    expect(scope.awesomeThings.length > 5).toBeTruthy();
+    expect(angular.isArray(scope.users)).toBeTruthy();
+    expect(scope.users.length).toBe(2);
   }));
+  
 });

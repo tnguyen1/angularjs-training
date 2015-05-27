@@ -9,11 +9,23 @@
     <p><a class="btn btn-lg btn-success" ng-href="#/">Register!</a></p>
   </div>
 
-  <div class="row">
-
+  <div>
+    <h2>Registered users</h2>
+    <table class="table-bordered table-condensed">
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+      </tr>
+      <tr ng-repeat="user in users">
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+      </tr>
+    </table>
   </div>
 
   <hr>
+
+
 
   <div class="footer">
     <p>With ♥ from <a href="https://twitter.com/NinjaSquad">Ninja Squad</a></p>
