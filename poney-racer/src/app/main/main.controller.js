@@ -11,6 +11,7 @@ angular.module('controllers')
         }).
         error(function(data, status, headers, config) {
           $log.log('Uh-oh! Failed to retrieve users from backend');
+          $log.error(data);
         });
     };
 

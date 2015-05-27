@@ -13,7 +13,7 @@ describe('Register E2E tests', function() {
     expect(loginLabel.getAttribute('class')).not.toContain('red');
     expect(login.getAttribute('class')).not.toContain('ng-invalid-minlength');
     expect(login.getCssValue('border')).toContain('');
-    expect(loginWarning.isDisplayed()).toBeFalsy();
+    expect(loginWarning.isPresent()).toBeFalsy();
 
     // typing one character should trigger invalid-length
     login.sendKeys('c');
