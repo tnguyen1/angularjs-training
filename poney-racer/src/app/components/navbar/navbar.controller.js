@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('poneyRacer')
+angular.module('controllers')
   .controller('NavbarCtrl', function ($scope) {
     $scope.date = new Date();
   });

@@ -1,6 +1,6 @@
 'use strict';
 
-describe('controllers', function() {
+describe('Main controller tests', function() {
 
   var scope, $controller, $httpBackend;
 
@@ -32,5 +32,5 @@ describe('controllers', function() {
     expect(angular.isArray(scope.users)).toBeTruthy();
     expect(scope.users.length).toBe(2);
   }));
-  
+
 });
