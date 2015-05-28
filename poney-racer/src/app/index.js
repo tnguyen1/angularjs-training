@@ -29,6 +29,10 @@ angular.module('poneyRacer', ['services', 'controllers', 'directives', 'ngRoute'
         templateUrl: 'app/races/raceDetails.html',
         controller: 'RaceDetailsCtrl'
       })
+      .when('/races/:raceId/live', {
+        templateUrl: 'app/races/live.html',
+        controller: 'LiveCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

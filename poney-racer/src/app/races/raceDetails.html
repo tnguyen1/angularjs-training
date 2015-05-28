@@ -8,13 +8,21 @@
 <div class="container">
   <div style="padding-bottom: 15px;">
     <a class="btn btn-danger" ng-href="#races">&laquo; Back to races</a>
+    <a class="btn btn-success" ng-href="#races/{{raceId}}/live" ng-if="race.status == 'READY'">Start race! &raquo;</a>
+    <a class="btn btn-success" ng-href="#races/{{raceId}}/live" ng-if="race.status == 'STARTED'">Watch live! &raquo;</a>
   </div>
 
   <div class="col-xs-12">
     <div ng-repeat="p in race.poneys">
-      <button class="btn btn-primary" ng-click="bet(p)" ng-if="p != race.bettedPoney">Bet on {{p}}!</button>
-      <button class="btn btn-danger" ng-click="cancelBet()" ng-if="p == race.bettedPoney">Cancel bet</button>
-      <poney name="{{ p }}" betted="p == race.bettedPoney" />
+      <div class="row">
+        <div class="poney col-xs-2">
+          <button class="btn btn-primary" ng-click="bet(p)" ng-if="p != race.bettedPoney">Bet on {{p}}!</button>
+          <button class="btn btn-danger" ng-click="cancelBet()" ng-if="p == race.bettedPoney">Cancel bet</button>
+        </div>
+        <div class="col-xs-6">
+          <poney name="{{ p }}" betted="p == race.bettedPoney" />
+        </div>
+      </div>
     </div>
   </div>
 </div>

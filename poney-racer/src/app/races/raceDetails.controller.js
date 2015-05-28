@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('controllers')
-  .controller('RaceDetailsCtrl', function ($scope, $log, $http, $routeParams) {
+  .controller('RaceDetailsCtrl', function ($scope, $log, $http, $routeParams, $location) {
 
     $scope.raceId = $routeParams.raceId;
 
@@ -27,6 +27,10 @@ angular.module('controllers')
           $log.info("Bet cancelled for race " + $scope.raceId);
           fetchRace();
         });
+    };
+
+    $scope.openRaceLive = function(raceId) {
+      $location.path('/races/' + raceId + '/live');
     };
 
     fetchRace();

@@ -25,7 +25,7 @@
       <td>{{ race.name }}</td>
       <td>{{ race.status }}</td>
       <td>
-        <button class="btn btn-danger btn-xs" ng-click="openRaceDetails(race.id)">Details</button>
+        <a class="btn btn-danger btn-xs" ng-href="#races/{{race.id}}">Details</a>
       </td>
     </tr>
   </table>
