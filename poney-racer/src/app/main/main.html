@@ -13,10 +13,14 @@
     <h2>Registered users</h2>
     <table class="table-bordered table-condensed">
       <tr>
+        <th>Login</th>
+        <th>Password</th>
         <th>Firstname</th>
         <th>Lastname</th>
       </tr>
-      <tr ng-repeat="user in users">
+      <tr ng-repeat="user in users | orderBy: 'login'">
+        <td>{{ user.login }}</td>
+        <td>{{ user.password }}</td>
         <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td>
       </tr>
