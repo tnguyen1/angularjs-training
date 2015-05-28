@@ -23,9 +23,13 @@
     <tr ng-repeat="race in races | orderBy: 'id' | filter:search">
       <td>{{ race.id }}</td>
       <td>{{ race.name }}</td>
-      <td>{{ race.status }}</td>
       <td>
-        <a class="btn btn-danger btn-xs" ng-href="#races/{{race.id}}">Details</a>
+        <span class="label label-primary" ng-if="race.status == 'READY'">Ready</span>
+        <span class="label label-warning" ng-if="race.status == 'STARTED'">Started</span>
+        <span class="label label-danger" ng-if="race.status == 'FINISHED'">Finished</span>
+      </td>
+      <td>
+        <a ng-href="#races/{{race.id}}">Details</a>
       </td>
     </tr>
   </table>

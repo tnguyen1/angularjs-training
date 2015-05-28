@@ -4,14 +4,62 @@ angular.module('controllers')
 .controller('LiveCtrl', function ($scope, $log, $http, $routeParams, $location) {
 
   $scope.raceId = $routeParams.raceId;
+  $scope.firstPoneys = [];
 
-  var init = function() {
-    $http.post('http://localhost:8080/poneyserver/running', $scope.raceId)
+  var fetchRace = function() {
+    return $http.get('http://localhost:8080/poneyserver/races/' + $scope.raceId)
+      .then(function(response) {
+        $scope.race = response.data;
+      });
+  };
+
+  var startRace = function() {
+    return $http.post('http://localhost:8080/poneyserver/running', $scope.raceId)
       .then(function(response) {
         $log.info("Started race " + $scope.raceId);
       });
   };
 
-  init();
+  var updateLeaders = function() {
+    var firstPoneys = $scope.firstPoneys;
+    var maxPos = 0;
+    for (var i = 0; i < $scope.positions.length; i++) {
+      var p = $scope.positions[i];
+      if (p.position >= maxPos) {
+        if (p.position == maxPos) {
+          firstPoneys.push(p.poney);
+        }
+        else {
+          firstPoneys = [p.poney];
+        }
+        maxPos = p.position;
+      }
+      $scope.firstPoneys = firstPoneys;
+    }
+  };
 
+  var monitorPositions = function() {
+    var socket = new SockJS('http://localhost:8080/poneyserver/race');
+    var stompClient = Stomp.over(socket);
+
+    stompClient.connect('', function() {
+      stompClient.subscribe('/topic/' + $scope.raceId, function(message) {
+        $scope.positions = angular.fromJson(message.body).positions;
+        $scope.$apply();
+        fetchRace();
+        updateLeaders();
+      });
+    });
+  }
+
+  // init controller
+  fetchRace()
+    .then(function() {
+      if ($scope.race.status == 'READY') {
+        startRace();
+      }
+    })
+    .then(function() {
+      monitorPositions();
+    });
 });

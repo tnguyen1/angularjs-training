@@ -1,8 +1,8 @@
 <div class="container page-header">
-  <span class="h1">{{ race.name }}</span>
+  <span class="h1">{{ race.name }} </span>
   <span class="label label-primary" ng-if="race.status == 'READY'">Ready</span>
   <span class="label label-warning" ng-if="race.status == 'STARTED'">Started</span>
-  <span class="label label-success" ng-if="race.status == 'FINISHED'">Finished</span>
+  <span class="label label-danger" ng-if="race.status == 'FINISHED'">Finished</span>
 </div>
 
 <div class="container">
@@ -15,7 +15,7 @@
   <div class="col-xs-12">
     <div ng-repeat="p in race.poneys">
       <div class="row">
-        <div class="poney col-xs-2">
+        <div class="poney col-xs-2" ng-if="race.status == 'READY'">
           <button class="btn btn-primary" ng-click="bet(p)" ng-if="p != race.bettedPoney">Bet on {{p}}!</button>
           <button class="btn btn-danger" ng-click="cancelBet()" ng-if="p == race.bettedPoney">Cancel bet</button>
         </div>
