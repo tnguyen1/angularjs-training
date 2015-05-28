@@ -16,12 +16,16 @@ describe('Login controller', function() {
   }));
 
   it('should pass login with valid credentials', inject(function(AuthenticationService) {
-    spyOn(AuthenticationService, 'login').and.returnValue('mySecretToken');
+    spyOn(AuthenticationService, 'login').and.returnValue($q.when('mySecretToken'));
+    scope.login({});
+    scope.$apply();
     expect(scope.failedLogin).toBeFalsy();
   }));
 
   it('should fail login with invalid credentials', inject(function(AuthenticationService) {
     spyOn(AuthenticationService, 'login').and.returnValue($q.reject('Fake login rejection'));
+    scope.login({});
+    scope.$apply();
     expect(scope.failedLogin).toBeTruthy();
   }));
 

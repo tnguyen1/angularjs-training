@@ -1,0 +1,32 @@
+<div class="container h1 page-header">Races</div>
+
+<div class="container">
+  <div class="btn-group" style="padding-bottom: 15px;">
+    <label class="btn btn-default">
+      <input type="radio" id="ready" name="ready" value="READY" ng-model="search.status" /> Ready
+    </label>
+    <label class="btn btn-default">
+      <input type="radio" id="started" name="started" value="STARTED" ng-model="search.status" /> Started
+    </label>
+    <label class="btn btn-default">
+      <input type="radio" id="finished" name="finished" value="FINISHED" ng-model="search.status" /> Finished
+    </label>
+  </div>
+
+  <table class="table-bordered table-condensed">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th></th>
+    </tr>
+    <tr ng-repeat="race in races | orderBy: 'id' | filter:search">
+      <td>{{ race.id }}</td>
+      <td>{{ race.name }}</td>
+      <td>{{ race.status }}</td>
+      <td>
+        <button class="btn btn-danger btn-xs" ng-click="openRaceDetails(race.id)">Details</button>
+      </td>
+    </tr>
+  </table>
+</div>

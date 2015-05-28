@@ -4,7 +4,9 @@ angular.module('services', ['ngCookies']);
 
 angular.module('controllers', ['ngMessages']);
 
-angular.module('poneyRacer', ['services', 'controllers', 'ngRoute', 'ui.bootstrap'])
+angular.module('directives', []);
+
+angular.module('poneyRacer', ['services', 'controllers', 'directives', 'ngRoute', 'ui.bootstrap'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -18,6 +20,14 @@ angular.module('poneyRacer', ['services', 'controllers', 'ngRoute', 'ui.bootstra
       .when('/login', {
         templateUrl: 'app/login/login.html',
         controller: 'LoginCtrl'
+      })
+      .when('/races', {
+        templateUrl: 'app/races/races.html',
+        controller: 'RacesCtrl'
+      })
+      .when('/races/:raceId', {
+        templateUrl: 'app/races/raceDetails.html',
+        controller: 'RaceDetailsCtrl'
       })
       .otherwise({
         redirectTo: '/'

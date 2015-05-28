@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('controllers')
-  .controller('MainCtrl', function ($scope, $http, $log) {
+  .controller('MainCtrl', function ($scope, $http, $log, AuthenticationService) {
 
     $scope.init = function() {
       $scope.users = [];
@@ -14,6 +14,14 @@ angular.module('controllers')
           $log.error(data);
         });
     };
+
+    $scope.isLogged = function() {
+      return AuthenticationService.isLogged();
+    };
+
+    $scope.logout = function() {
+      return AuthenticationService.logout();
+    }
 
     // init controller
     $scope.init();

@@ -7,8 +7,14 @@
       Always a pleasure to bet on poneys.
     </p>
     <p>
-      <a class="btn btn-lg btn-danger" ng-href="#register">Register!</a>
-      <a class="btn btn-lg btn-success" ng-href="#login">Login</a>
+      <div ng-if="!isLogged()">
+        <a class="btn btn-lg btn-danger" ng-href="#register">Register!</a>
+        <a class="btn btn-lg btn-success" ng-href="#login">Login</a>
+      </div>
+      <div ng-if="isLogged()">
+        <a class="btn btn-lg btn-danger" ng-href="#races">Go to races!</a>
+        <a class="btn btn-lg btn-success" ng-click="logout()">Logout</a>
+      </div>
     </p>
   </div>
 

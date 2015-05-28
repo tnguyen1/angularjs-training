@@ -1,0 +1,15 @@
+<div class="container page-header">
+  <span class="h1">{{ race.name }}</span>
+  <span class="label label-primary" ng-if="race.status == 'READY'">Ready</span>
+  <span class="label label-warning" ng-if="race.status == 'STARTED'">Started</span>
+  <span class="label label-success" ng-if="race.status == 'FINISHED'">Finished</span>
+</div>
+
+<div class="container">
+  <div style="padding-bottom: 15px;">
+    <a class="btn btn-danger" ng-href="#races">&laquo; Back to races</a>
+  </div>
+
+  <h2>Standings</h2>
+  <poney ng-repeat="p in race.poneys" name="{{ p }}" />
+</div>
