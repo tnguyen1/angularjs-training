@@ -1,8 +1,10 @@
 'use strict';
 
+angular.module('services', ['ngCookies']);
+
 angular.module('controllers', ['ngMessages']);
 
-angular.module('poneyRacer', ['controllers', 'ngCookies', 'ngRoute', 'ui.bootstrap'])
+angular.module('poneyRacer', ['services', 'controllers', 'ngRoute', 'ui.bootstrap'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -13,8 +15,16 @@ angular.module('poneyRacer', ['controllers', 'ngCookies', 'ngRoute', 'ui.bootstr
         templateUrl: 'app/register/register.html',
         controller: 'RegisterCtrl'
       })
+      .when('/login', {
+        templateUrl: 'app/login/login.html',
+        controller: 'LoginCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
+  })
+
+  .run(function(AuthenticationService) {
+    AuthenticationService.init();
   })
 ;

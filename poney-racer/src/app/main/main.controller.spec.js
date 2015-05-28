@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Main controller tests', function() {
+describe('Main controller', function() {
 
   var scope, $controller, $httpBackend;
 

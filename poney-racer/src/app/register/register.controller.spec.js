@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Register controller tests', function() {
+describe('Register controller', function() {
 
   var scope, $httpBackend, $timeout, $location;
 
@@ -21,7 +21,7 @@ describe('Register controller tests', function() {
     $httpBackend.verifyNoOutstandingRequest();
   });
 
-  it('should register one new user', inject(function($controller) {
+  it('should register one new user', function() {
     $httpBackend.expectPOST('http://localhost:8080/poneyserver/users')
       .respond(201, {'token':'roger'});
     scope.register({'login': 'roger'});
@@ -32,9 +32,9 @@ describe('Register controller tests', function() {
     expect(scope.registerSuccess).toBeTruthy();
     expect(scope.registerError).toBeFalsy();
     expect($location.url()).toEqual('/');
-  }));
+  });
 
-  it('should reject existing user registration', inject(function($controller) {
+  it('should reject existing user registration', function() {
     var msg = 'The login is already in use';
     $httpBackend.expectPOST('http://localhost:8080/poneyserver/users')
       .respond(400, {'message':msg});
@@ -45,6 +45,6 @@ describe('Register controller tests', function() {
     expect(scope.registerSuccess).toBeFalsy();
     expect(scope.registerError).toBeTruthy();
     expect(scope.registerErrorMessage).toEqual(msg);
-  }));
+  });
 
 });
