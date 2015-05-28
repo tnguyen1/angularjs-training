@@ -10,6 +10,11 @@
     <a class="btn btn-danger" ng-href="#races">&laquo; Back to races</a>
   </div>
 
-  <h2>Standings</h2>
-  <poney ng-repeat="p in race.poneys" name="{{ p }}" />
+  <div class="col-xs-12">
+    <div ng-repeat="p in race.poneys">
+      <button class="btn btn-primary" ng-click="bet(p)" ng-if="p != race.bettedPoney">Bet on {{p}}!</button>
+      <button class="btn btn-danger" ng-click="cancelBet()" ng-if="p == race.bettedPoney">Cancel bet</button>
+      <poney name="{{ p }}" betted="p == race.bettedPoney" />
+    </div>
+  </div>
 </div>

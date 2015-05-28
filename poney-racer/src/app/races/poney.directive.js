@@ -1,8 +1,9 @@
 angular.module('directives').directive('poney', function() {
   return {
     scope: {
-      poneyName: '@name'
+      poneyName: '@name',
+      isBetted: '=betted'
     },
-    template: '<div><strong>{{ poneyName }}</strong> &raquo; <img ng-src="assets/images/poney-{{poneyName | lowercase}}.png" /></div>'
+    templateUrl: 'app/races/poney.template.html'
   };
 });

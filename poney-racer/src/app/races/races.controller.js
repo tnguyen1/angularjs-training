@@ -8,7 +8,7 @@ angular.module('controllers')
       $http.get('http://localhost:8080/poneyserver/races')
         .then(function(response) {
         $scope.races = response.data;
-      })
+      });
     };
 
     $scope.openRaceDetails = function(raceId) {
