@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('controllers')
-  .controller('MainCtrl', function ($scope, $http, $log, AuthenticationService) {
+  .controller('MainCtrl', function (CONFIG, $scope, $http, $log, AuthenticationService) {
 
     $scope.init = function() {
       $scope.users = [];
-      $http.get('http://localhost:8080/poneyserver/users').
+      $http.get(CONFIG.serverBaseUrl + '/users').
         success(function(data, status, headers, config) {
           $scope.users = data;
         }).

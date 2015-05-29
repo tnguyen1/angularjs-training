@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('controllers')
-  .controller('RegisterCtrl', function ($scope, $http, $location, $log, $timeout) {
+  .controller('RegisterCtrl', function (CONFIG, $scope, $http, $location, $log, $timeout) {
 
     $scope.register = function(user) {
-      $http.post('http://localhost:8080/poneyserver/users', user).
+      $http.post(CONFIG.serverBaseUrl + '/users', user).
         success(function(data, status, headers, config) {
           $scope.registerSuccess = true;
           $scope.registerError = false;

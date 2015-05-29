@@ -2,14 +2,15 @@
 
 describe('Main controller', function() {
 
-  var scope, $controller, $httpBackend;
+  var scope, $controller, $httpBackend, config;
 
   beforeEach(module('controllers'));
 
-  beforeEach(inject(function($rootScope, _$controller_, _$httpBackend_) {
+  beforeEach(inject(function(CONFIG, $rootScope, _$controller_, _$httpBackend_) {
     scope = $rootScope.$new();
     $controller = _$controller_;
     $httpBackend = _$httpBackend_;
+    config = CONFIG;
   }));
 
   afterEach(function() {
@@ -22,7 +23,7 @@ describe('Main controller', function() {
     fakeUsers.push({'login':'ced'});
     fakeUsers.push({'login':'truc'});
 
-    $httpBackend.expectGET('http://localhost:8080/poneyserver/users')
+    $httpBackend.expectGET(config.serverBaseUrl + '/users')
       .respond(fakeUsers);
     $controller('MainCtrl', {
       $scope: scope

@@ -1,20 +1,20 @@
 'use strict';
 
 angular.module('controllers')
-.controller('LiveCtrl', function ($scope, $log, $http, $routeParams, $location) {
+.controller('LiveCtrl', function (CONFIG, $scope, $log, $http, $routeParams, $location) {
 
   $scope.raceId = $routeParams.raceId;
   $scope.firstPoneys = [];
 
   var fetchRace = function() {
-    return $http.get('http://localhost:8080/poneyserver/races/' + $scope.raceId)
+    return $http.get(CONFIG.serverBaseUrl + '/races/' + $scope.raceId)
       .then(function(response) {
         $scope.race = response.data;
       });
   };
 
   var startRace = function() {
-    return $http.post('http://localhost:8080/poneyserver/running', $scope.raceId)
+    return $http.post(CONFIG.serverBaseUrl + '/running', $scope.raceId)
       .then(function(response) {
         $log.info("Started race " + $scope.raceId);
       });
@@ -39,7 +39,7 @@ angular.module('controllers')
   };
 
   var monitorPositions = function() {
-    var socket = new SockJS('http://localhost:8080/poneyserver/race');
+    var socket = new SockJS(CONFIG.serverBaseUrl + '/race');
     var stompClient = Stomp.over(socket);
 
     stompClient.connect('', function() {

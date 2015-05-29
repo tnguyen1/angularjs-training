@@ -1,7 +1,7 @@
-angular.module('services').factory('AuthenticationService', function($http, $cookies, $log) {
+angular.module('services').factory('AuthenticationService', function(CONFIG, $http, $cookies, $log) {
 
   var login = function(user) {
-    return $http.post('http://localhost:8080/poneyserver/authentication', user)
+    return $http.post(CONFIG.serverBaseUrl + '/authentication', user)
       .then(function(response) {
         var token = response.data.token;
         $cookies.customAuth = token;

@@ -1,12 +1,14 @@
 'use strict';
 
-angular.module('services', ['ngCookies']);
-
-angular.module('controllers', ['ngMessages']);
+angular.module('constants', []);
 
 angular.module('directives', []);
 
-angular.module('poneyRacer', ['services', 'controllers', 'directives', 'ngRoute', 'ui.bootstrap'])
+angular.module('services', ['constants', 'ngCookies']);
+
+angular.module('controllers', ['services', 'directives', 'ngMessages']);
+
+angular.module('poneyRacer', ['controllers', 'ngRoute', 'ui.bootstrap'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

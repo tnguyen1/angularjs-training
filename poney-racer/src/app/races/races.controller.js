@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('controllers')
-  .controller('RacesCtrl', function ($scope, $log, $http, $location) {
+  .controller('RacesCtrl', function (CONFIG, $scope, $log, $http, $location) {
 
     $scope.init = function() {
       $scope.races = [];
-      $http.get('http://localhost:8080/poneyserver/races')
+      $http.get(CONFIG.serverBaseUrl + '/races')
         .then(function(response) {
         $scope.races = response.data;
       });
